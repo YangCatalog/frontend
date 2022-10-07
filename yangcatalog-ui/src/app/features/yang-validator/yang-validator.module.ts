@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { NgbAccordionModule, NgbAlertModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbAlertModule, NgbTypeaheadModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 import { CoreModule } from '../../core/core.module';
 import { FileUploadFormModule } from '../../shared/file-upload-form/file-upload-form.module';
@@ -27,6 +27,7 @@ import { YangValidatorComponent } from './yang-validator.component';
     CommonModule,
     YangValidatorRoutingModule,
     NgbTabsetModule,
+    NgbTypeaheadModule,
     ReactiveFormsModule,
     FormsModule,
     NgBootstrapFormValidationModule,
