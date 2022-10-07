@@ -82,9 +82,11 @@
           <yc-validation-error [error]="draftNameError"></yc-validation-error>
           <label class="control-label" for="draftNameInput">IETF Draft name</label>
           <div class="form-inline">
-            <input id="draftNameInput" formControlName="draftName" type="text" class="form-control"
+            <!-- <input id="draftNameInput" formControlName="draftName" type="text" class="form-control"
               [ngbTypeahead]="autocomplete" (click)="setActiveForm('draftName')" (blur)="setActiveForm('draftName')"
-              placeholder="Draft name, e.g. draft-ietf-netmod-syslog-model" />
+              placeholder="Draft name, e.g. draft-ietf-netmod-syslog-model" /> -->
+            <input id="draftNameInput" formControlName="draftName" type="text" class="form-control"
+              [ngbTypeahead]="autocomplete" placeholder="Fill the draft name" />
             <button id="draftNameSubmit" class="btn btn-outline-primary px-ml-5"
               (click)="setActiveForm('draftName'); validateDraftName()">
               <div class="spinner-border text-primary" role="status" *ngIf="validatingDraftNameProgress"></div>
