@@ -6,7 +6,7 @@
         <a routerLink="/yangvalidator/" *ngIf="apiOverview">YANG Validator</a>
         <span *ngIf="!apiOverview">YANG Validator</span>
       </h2>
-           
+
       <h3 *ngIf="apiOverview">API overview</h3>
 
       <div class="files-validation-container" *ngIf="apiOverview">
@@ -14,17 +14,17 @@
       </div>
 
       <div class="files-validation-container" *ngIf="!apiOverview"
-           [ngClass]="{'inactive': activeForm && activeForm !== 'files'}" (click)="setActiveForm('files')">
+        [ngClass]="{'inactive': activeForm && activeForm !== 'files'}" (click)="setActiveForm('files')">
         <p>I have one or multiple YANG files and I want to validate them </p>
 
         <yc-validation-error [error]="filesError"></yc-validation-error>
-        <ngb-alert type="warning" [dismissible]="false"
-                   *ngIf="validationOutput && validationOutput.warning">{{ validationOutput.warning }}</ngb-alert>
+        <ngb-alert type="warning" [dismissible]="false" *ngIf="validationOutput && validationOutput.warning">{{
+          validationOutput.warning }}</ngb-alert>
 
         <yc-file-upload-form [filesPropertyName]="'attachments'" [allowedFileTypes]="['.txt', '.yang', '.zip']"
-                             #filesForm (click)="setActiveForm('files')"></yc-file-upload-form>
+          #filesForm (click)="setActiveForm('files')"></yc-file-upload-form>
         <button id="filesSubmit" class="btn btn-outline-primary mb-30" (click)="validateFiles()"
-                *ngIf="filesForm.attachments.length">
+          *ngIf="filesForm.attachments.length">
           <div class="spinner-border text-primary" role="status" *ngIf="validatingFilesProgress"></div>
           Validate
         </button>
@@ -33,16 +33,16 @@
       <hr *ngIf="!apiOverview">
 
       <div class="files-validation-container" *ngIf="!apiOverview"
-           [ngClass]="{'inactive': activeForm && activeForm !== 'draft'}" (click)="setActiveForm('draft')">
+        [ngClass]="{'inactive': activeForm && activeForm !== 'draft'}" (click)="setActiveForm('draft')">
         <p>
           I have the Internet Draft/RFC document and I want to validate it
         </p>
 
         <yc-validation-error [error]="draftError"></yc-validation-error>
         <yc-file-upload-form [filesPropertyName]="'attachments'" [allowedFileTypes]="['.txt']" [multipleFiles]="false"
-                             #draftFileForm (click)="setActiveForm('draft')"></yc-file-upload-form>
+          #draftFileForm (click)="setActiveForm('draft')"></yc-file-upload-form>
         <button id="draftFilesSubmit" class="btn btn-outline-primary mb-30" (click)="validateDraftFile()"
-                *ngIf="draftFileForm.attachments.length">
+          *ngIf="draftFileForm.attachments.length">
           <div class="spinner-border text-primary" role="status" *ngIf="validatingDraftFileProgress"></div>
           Validate
         </button>
@@ -51,7 +51,7 @@
       <hr *ngIf="!apiOverview">
 
       <form [formGroup]="rfcNumberForm" *ngIf="!apiOverview"
-            [ngClass]="{'inactive': activeForm && activeForm !== 'rfcNumber'}" (click)="setActiveForm('rfcNumber')">
+        [ngClass]="{'inactive': activeForm && activeForm !== 'rfcNumber'}" (click)="setActiveForm('rfcNumber')">
         <div class="form-group" [customErrorMessages]="customErrorMessages">
           <p>
             I know the number of IETF RFC and I want to validate it
@@ -60,10 +60,10 @@
           <label class="control-label" for="rfcNumberInput">IETF RFC number</label>
           <div class="form-inline">
             <input id="rfcNumberInput" formControlName="rfcNumber" type="text" class="form-control"
-                   (click)="setActiveForm('rfcNumber')" (blur)="setActiveForm('rfcNumber')"
-                   placeholder="RFC number, e.g. 7223"/>
+              (click)="setActiveForm('rfcNumber')" (blur)="setActiveForm('rfcNumber')"
+              placeholder="RFC number, e.g. 7223" />
             <button id="rfcNumberSubmit" class="btn btn-outline-primary px-ml-5"
-                    (click)="setActiveForm('rfcNumber'); validateRfcNumber()">
+              (click)="setActiveForm('rfcNumber'); validateRfcNumber()">
               <div class="spinner-border text-primary" role="status" *ngIf="validatingRfcNumberProgress"></div>
               Validate
             </button>
@@ -74,7 +74,7 @@
       <hr *ngIf="!apiOverview">
 
       <form [formGroup]="draftNameForm" *ngIf="!apiOverview"
-            [ngClass]="{'inactive': activeForm && activeForm !== 'draftName'}" (click)="setActiveForm('draftName')">
+        [ngClass]="{'inactive': activeForm && activeForm !== 'draftName'}" (click)="setActiveForm('draftName')">
         <div class="form-group">
           <p>
             I know the name of IETF Draft and I want to validate it
@@ -83,10 +83,10 @@
           <label class="control-label" for="draftNameInput">IETF Draft name</label>
           <div class="form-inline">
             <input id="draftNameInput" formControlName="draftName" type="text" class="form-control"
-                   (click)="setActiveForm('draftName')" (blur)="setActiveForm('draftName')"
-                   placeholder="Draft name, e.g. draft-ietf-netmod-syslog-model"/>
+              [ngbTypeahead]="autocomplete" (click)="setActiveForm('draftName')" (blur)="setActiveForm('draftName')"
+              placeholder="Draft name, e.g. draft-ietf-netmod-syslog-model" />
             <button id="draftNameSubmit" class="btn btn-outline-primary px-ml-5"
-                    (click)="setActiveForm('draftName'); validateDraftName()">
+              (click)="setActiveForm('draftName'); validateDraftName()">
               <div class="spinner-border text-primary" role="status" *ngIf="validatingDraftNameProgress"></div>
               Validate
             </button>
@@ -103,12 +103,12 @@
       </div>
 
       <hr *ngIf="!apiOverview">
-      
+
       <a [routerLink]="'api'" *ngIf="!apiOverview">I want to use the REST API for validating the IETF RFCs >></a>
 
       <div class="results-container" #validationResults>
-        <yc-validation-result [validationOutput]="validationOutput"
-                              *ngIf="validationOutput && !apiOverview"></yc-validation-result>
+        <yc-validation-result [validationOutput]="validationOutput" *ngIf="validationOutput && !apiOverview">
+        </yc-validation-result>
       </div>
 
     </div>

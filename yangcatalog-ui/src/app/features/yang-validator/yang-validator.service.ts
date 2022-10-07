@@ -30,6 +30,10 @@ export class YangValidatorService extends DataService {
     );
   }
 
+  getDraftAutocomplete(searchStr: string): Observable<any> {
+    return this.customGet('api/yang-search/v2/completions/draft/' + searchStr);
+  }
+
   validateDraftByName(draftName: string): Observable<ValidationOutput> {
     return this.post('yangvalidator/v2/draft', {
       draft: draftName,

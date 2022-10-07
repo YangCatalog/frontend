@@ -5,8 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ErrorMessage } from 'ng-bootstrap-form-validation';
-import { merge, Subject } from 'rxjs';
-import { finalize, mergeMap, takeUntil } from 'rxjs/operators';
+import { merge, Observable, of, zip, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, finalize, map, mergeMap, takeUntil } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { YcValidationsService } from '../../core/yc-validations.service';
 import { FileUploadFormComponent } from '../../shared/file-upload-form/file-upload-form.component';
@@ -30,6 +30,8 @@ export class YangValidatorComponent implements OnInit, OnDestroy {
 
   rfcNumberForm: FormGroup;
   draftNameForm: FormGroup;
+
+  autocomplete = this.autocompleteDraftRequest.bind(this);
 
   rfcNumberValidation = true;
   draftNameValidation = true;
@@ -230,6 +232,22 @@ export class YangValidatorComponent implements OnInit, OnDestroy {
           }
         }
       );
+  }
+
+  autocompleteDraftRequest(text$: Observable<string>) {
+    return text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      mergeMap(term => {
+        if (term.length > 2) {
+          return this.dataService.getDraftAutocomplete(term.toLowerCase());
+        } else {
+          return of([]);
+        }
+      }
+      ),
+      takeUntil(this.componentDestroyed)
+    );
   }
 
   validateDraftName() {
