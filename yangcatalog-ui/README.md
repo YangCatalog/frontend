@@ -19,3 +19,11 @@ The rest of the data is provided by the [backend](https://github.com/YangCatalog
 YANG Catalog's frontend is written in Angular and TypeScript.
 
 The docker container is meant to be deployed with docker-compose or k8s as part of a full YANG Catalog instance with the [deployment](https://github.com/yang-catalog/deployment) repository.
+
+## Debugging Angular application in VS Code
+If you use VS Code as IDE, the debugging configuration is already created.
+- First you need to install [JavaScript Debugger (Nightly)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) extensions
+- Start Angular application with command npm start - application runs on http://localhost:4200
+- Select debug configuration and run it
+
+Then you should be able to place breakpoint anywhere in the code.
