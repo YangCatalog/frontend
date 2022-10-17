@@ -4,6 +4,7 @@ export interface SearchInput {
   'type': string;
   'include-mibs': boolean;
   'latest-revision': boolean;
+  'use-synonyms': boolean;
   'searched-fields': string[];
   'yang-versions': string[];
   'schema-types': string[];
