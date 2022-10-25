@@ -1,0 +1,12 @@
+<div *ngIf="alert">
+    <div *ngIf="alert.type == 'info'; then infoBlock else dangerBlock"></div>
+
+    <ng-template #dangerBlock>
+        <ngb-alert type="danger" (close)="onCloseError()">{{ alert.message || 'The application
+            has encountered an unknown error.'}}</ngb-alert>
+    </ng-template>
+    <ng-template #infoBlock>
+        <ngb-alert type="info" (close)="onCloseError()">{{ alert.message || 'Got unknown info
+            message.'}}</ngb-alert>
+    </ng-template>
+</div>

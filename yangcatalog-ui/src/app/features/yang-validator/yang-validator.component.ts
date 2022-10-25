@@ -13,6 +13,7 @@ import { FileUploadFormComponent } from '../../shared/file-upload-form/file-uplo
 import { MissingModulesSelectionComponent } from './missing-modules-confirmation/missing-modules-selection.component';
 import { ChosenMissingRevsInput } from './models/chosen-missing-revs-input';
 import { ValidationOutput } from './models/validation-output';
+import { ValidationError } from './models/validation-error';
 import { YangValidatorService } from './yang-validator.service';
 
 
@@ -242,10 +243,14 @@ export class YangValidatorComponent implements OnInit, OnDestroy {
         err => {
           if (err instanceof (HttpErrorResponse)) {
             this.rfcError = {
-              'message': err.error['Error']
+              'message': err.error['Error'],
+              'type': 'error'
             }
           } else {
-            this.rfcError = err;
+            this.rfcError = {
+              'message': err.message,
+              'type': err.type
+            }
           }
         }
       );
@@ -333,10 +338,14 @@ export class YangValidatorComponent implements OnInit, OnDestroy {
         err => {
           if (err instanceof (HttpErrorResponse)) {
             this.draftNameError = {
-              'message': err.error['Error']
+              'message': err.error['Error'],
+              'type': 'error'
             }
           } else {
-            this.draftNameError = err;
+            this.draftNameError = {
+              'message': err.message,
+              'type': err.type
+            }
           }
         }
       );
@@ -397,10 +406,14 @@ export class YangValidatorComponent implements OnInit, OnDestroy {
         err => {
           if (err instanceof (HttpErrorResponse)) {
             this.filesError = {
-              'message': err.error['Error']
+              'message': err.error['Error'],
+              'type': 'error'
             }
           } else {
-            this.filesError = err;
+            this.filesError = {
+              'message': err.message,
+              'type': err.type
+            }
           }
         }
       );
@@ -461,10 +474,14 @@ export class YangValidatorComponent implements OnInit, OnDestroy {
         err => {
           if (err instanceof (HttpErrorResponse)) {
             this.draftError = {
-              'message': err.error['Error']
+              'message': err.error['Error'],
+              'type': 'error'
             }
           } else {
-            this.draftError = err;
+            this.draftError = {
+              'message': err.message,
+              'type': err.type
+            }
           }
         }
       );

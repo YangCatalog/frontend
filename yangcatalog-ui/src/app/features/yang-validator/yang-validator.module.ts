@@ -8,7 +8,7 @@ import { CoreModule } from '../../core/core.module';
 import { FileUploadFormModule } from '../../shared/file-upload-form/file-upload-form.module';
 import { ApiOverviewComponent } from './api-overview/api-overview.component';
 import { MissingModulesSelectionComponent } from './missing-modules-confirmation/missing-modules-selection.component';
-import { ValidationErrorComponent } from './validation-error/validation-error.component';
+import { ValidationAlertComponent } from './validation-alert/validation-alert.component';
 import { ValidationResultComponent } from './validation-result/validation-result.component';
 import { YangValidatorRoutingModule } from './yang-validator-routing.module';
 import { YangValidatorComponent } from './yang-validator.component';
@@ -19,7 +19,7 @@ import { YangValidatorComponent } from './yang-validator.component';
     YangValidatorComponent,
     MissingModulesSelectionComponent,
     ValidationResultComponent,
-    ValidationErrorComponent,
+    ValidationAlertComponent,
     ApiOverviewComponent
   ],
   entryComponents: [MissingModulesSelectionComponent],

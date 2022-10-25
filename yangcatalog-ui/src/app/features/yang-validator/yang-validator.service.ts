@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { DataService } from '../../core/data.service';
 import { ChosenMissingRevsInput } from './models/chosen-missing-revs-input';
 import { ValidationOutput } from './models/validation-output';
+import { ValidationError } from './models/validation-error';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +22,12 @@ export class YangValidatorService extends DataService {
       latest: false
     }).pipe(
       map(output => {
-        if (output.hasOwnProperty('Error')) {
-          throw new Error(output['Error']);
-        } else {
-          return new ValidationOutput(output['output']);
+        if (output.hasOwnProperty('Type')) {
+          if (output['Type'] == 'error' || output['Type'] == 'info') {
+            throw new ValidationError(output['Message'], output['Type']);
+          }
         }
+        return new ValidationOutput(output['output']);
       })
     );
   }
@@ -40,11 +42,13 @@ export class YangValidatorService extends DataService {
       latest: false
     }).pipe(
       map(output => {
-        if (output.hasOwnProperty('Error')) {
-          throw new Error(output['Error']);
-        } else {
-          return new ValidationOutput(output['output']);
+        console.log(output);
+        if (output.hasOwnProperty('Type')) {
+          if (output['Type'] == 'error' || output['Type'] == 'info') {
+            throw new ValidationError(output['Message'], output['Type']);
+          }
         }
+        return new ValidationOutput(output['output']);
       })
     );
   }
@@ -64,11 +68,12 @@ export class YangValidatorService extends DataService {
     return this.post('yangvalidator/v2/validator/' + cache, formData)
       .pipe(
         map(output => {
-          if (output.hasOwnProperty('Error')) {
-            throw new Error(output['Error']);
-          } else {
-            return new ValidationOutput(output['output']);
+          if (output.hasOwnProperty('Type')) {
+            if (output['Type'] == 'error' || output['Type'] == 'info') {
+              throw new ValidationError(output['Message'], output['Type']);
+            }
           }
+          return new ValidationOutput(output['output']);
         })
       );
   }
@@ -77,10 +82,13 @@ export class YangValidatorService extends DataService {
     return this.post('yangvalidator/v2/draft-validator/' + cache, formData)
       .pipe(
         map(output => {
-          if (output.hasOwnProperty('Error')) {
-            throw new Error(output['Error']);
-          } else if (output.hasOwnProperty('output') && output['output'].hasOwnProperty('error')) {
-            throw new Error(output['output']['error']);
+          if (output.hasOwnProperty('Type')) {
+            if (output['Type'] == 'error' || output['Type'] == 'info') {
+              throw new ValidationError(output['Message'], output['Type']);
+            }
+          }
+          if (output.hasOwnProperty('output') && output['output'].hasOwnProperty('error')) {
+            throw new ValidationError(output['output']['error'], 'error');
           } else {
             return new ValidationOutput(output['output']);
           }
