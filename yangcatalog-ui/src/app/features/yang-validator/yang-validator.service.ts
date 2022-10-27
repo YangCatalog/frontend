@@ -42,7 +42,6 @@ export class YangValidatorService extends DataService {
       latest: false
     }).pipe(
       map(output => {
-        console.log(output);
         if (output.hasOwnProperty('Type')) {
           if (output['Type'] == 'error' || output['Type'] == 'info') {
             throw new ValidationError(output['Message'], output['Type']);

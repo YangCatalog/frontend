@@ -15,7 +15,7 @@ export class ValidationAlertComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onCloseError() {
+  onCloseAlert() {
     this.alert = null;
   }
 }
