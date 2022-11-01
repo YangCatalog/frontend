@@ -118,14 +118,7 @@ export class PrivateComponent implements OnInit, OnDestroy {
   problematicDrafts = {}
   statsError = null;
   privateError = null;
-  // TODO: Fetch this using dataService.getValidatorsVersions() method
-  validatorsVersion = {
-    'confd-version': 'confd-7.8',
-    'pyang-version': '2.5.3',
-    'xym-version': '0.6.1',
-    'yangdump-version': 'yangdump-pro 20.10-9',
-    'yanglint-version': 'yanglint 2.0.231'
-  }
+  validatorsVersion = {}
   tabIds = {
     'Statistics': 1,
     'SDO': 2,
@@ -216,6 +209,8 @@ export class PrivateComponent implements OnInit, OnDestroy {
         this.statsError = err;
       }
     );
+
+    this.validatorsVersion = this.dataService.getValidatorsVersions();
   }
 
   private loadGeneralPrivateData() {
