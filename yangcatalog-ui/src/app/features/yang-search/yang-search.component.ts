@@ -146,7 +146,8 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
         regularExpression: [false],
         includeMibs: [false],
         onlyLatestRevs: [true],
-        useSynonyms: [true]
+        useSynonyms: [true],
+        includeDrafts: [true],
       }),
       searchFields: this.fb.array(
         [
@@ -252,6 +253,7 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
       'include-mibs': this.form.get('searchOptions').get('includeMibs').value,
       'latest-revision': this.form.get('searchOptions').get('onlyLatestRevs').value,
       'use-synonyms': this.form.get('searchOptions').get('useSynonyms').value,
+      'include-drafts': this.form.get('searchOptions').get('includeDrafts').value,
       'searched-fields': this.form.get('searchFields').value,
       'yang-versions': this.form.get('yangVersions').value,
       'schema-types': this.form.get('schemaTypes').value,
