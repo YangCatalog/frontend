@@ -1,6 +1,12 @@
+
+
 <div class="yc-container yc-app-container" style="padding:128px 16px;" [ngClass]="{maximized: resultsMaximized}">
   <div class="yc-row-padding">
     <div class="yc-col" #contentCol>
+      <button class="button button--primary" (click)="showNotification( 'success', 'Good evening, you lovely person!' )">
+        Show notification!
+      </button>
+
       <form [formGroup]="form" *ngIf="!resultsMaximized">
         <h2>YANG Search</h2>
         <div class="form-group" [customErrorMessages]="customErrorMessages">

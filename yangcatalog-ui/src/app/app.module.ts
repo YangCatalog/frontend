@@ -8,6 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxMatomoTrackerModule } from '@ngx-matomo/tracker';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
+import { NotifierModule } from 'angular-notifier';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +30,9 @@ import { TitleService } from './shared/title/title.service';
     StaticContentModule,
     HttpClientModule,
     NgBootstrapFormValidationModule.forRoot(),
+    NotifierModule.withConfig({
+      // Custom options in here
+    }),
     CoreModule,
     AppAgGridModule,
     FontAwesomeModule,
