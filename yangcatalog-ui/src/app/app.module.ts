@@ -8,7 +8,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxMatomoTrackerModule } from '@ngx-matomo/tracker';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
-import { NotifierModule } from 'angular-notifier';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +15,7 @@ import { CoreModule } from './core/core.module';
 import { StaticContentModule } from './features/static-content/static-content.module';
 import { AppAgGridModule } from './shared/ag-grid/app-ag-grid.module';
 import { TitleService } from './shared/title/title.service';
-
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -30,9 +29,6 @@ import { TitleService } from './shared/title/title.service';
     StaticContentModule,
     HttpClientModule,
     NgBootstrapFormValidationModule.forRoot(),
-    NotifierModule.withConfig({
-      // Custom options in here
-    }),
     CoreModule,
     AppAgGridModule,
     FontAwesomeModule,
@@ -44,6 +40,7 @@ import { TitleService } from './shared/title/title.service';
       trackerUrl: environment.MATOMO_TRACKER_URL,
       disabled: !environment.production // Remove this line to use Matomo on DEV environment
     }),
+    ToastrModule.forRoot(),
   ],
   providers: [TitleService],
   exports: [],

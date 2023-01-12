@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { MatomoTracker } from '@ngx-matomo/tracker';
 import { TitleService } from './shared/title/title.service';
-import { NotifierService } from 'angular-notifier';
+import { ToastrService } from 'ngx-toastr';
+import notification_json from './shared/notification.json';
 
 @Component({
   selector: 'yc-root',
@@ -10,7 +11,7 @@ import { NotifierService } from 'angular-notifier';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  private notifier: NotifierService;
+  private toastr: ToastrService;
   
   defaultTitle = 'YANG Catalog';
 
@@ -18,9 +19,19 @@ export class AppComponent implements OnInit {
     private titleService: TitleService,
     private title: Title,
     private tracker: MatomoTracker,
-    private notifierService: NotifierService) {
-      this.notifier = notifierService;
+    private toastrService: ToastrService) {
+      this.toastr = toastrService;
     }
+
+  public showNotificationIfNotEmpty() {
+    if ('type' in notification_json && 'message' in notification_json) {
+      if (notification_json['type'] == 'info') {
+        this.toastr.info(notification_json['message'], '', {disableTimeOut: true, closeButton: true, positionClass: "toast-bottom-right"});
+      } else if (notification_json['type'] == 'warning') {
+        this.toastr.warning(notification_json['message'], '', {disableTimeOut: true, closeButton: true, positionClass: "toast-bottom-right"});
+      }
+    }
+  }
 
   ngOnInit() {
     this.titleService.boot()
@@ -29,9 +40,7 @@ export class AppComponent implements OnInit {
         this.title.setTitle(pageTitle);
         this.tracker.trackPageView(pageTitle);
       });
+    
+    this.showNotificationIfNotEmpty();
   }
-  
-  public showNotification( type: string, message: string ): void {
-		this.notifier.notify( type, message );
-	}
 }

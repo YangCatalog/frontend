@@ -7,7 +7,6 @@ import { CoreModule } from '../../core/core.module';
 import { AppAgGridModule } from '../../shared/ag-grid/app-ag-grid.module';
 import { YangSearchRoutingModule } from './yang-search-routing.module';
 import { YangSearchComponent } from './yang-search.component';
-import { NotifierModule } from 'angular-notifier';
 
 @NgModule({
   declarations: [YangSearchComponent],
@@ -20,8 +19,7 @@ import { NotifierModule } from 'angular-notifier';
     AppAgGridModule,
     NgbTooltipModule,
     NgBootstrapFormValidationModule,
-    CoreModule,
-    NotifierModule
+    CoreModule
   ]
 })
 export class YangSearchModule { }

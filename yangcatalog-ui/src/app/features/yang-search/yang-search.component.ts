@@ -10,7 +10,6 @@ import { YcValidationsService } from '../../core/yc-validations.service';
 import { AppAgGridComponent } from '../../shared/ag-grid/app-ag-grid.component';
 import { YangShowNodeModalComponent } from '../yang-show-node/yang-show-node-modal/yang-show-node-modal.component';
 import { YangSearchService } from './yang-search.service';
-import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'yc-yang-search',
@@ -22,7 +21,6 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('contentCol') contentCol: ElementRef;
 
   myBaseUrl = environment.WEBROOT_BASE_URL;
-  private readonly notifier: NotifierService;
 
   form: FormGroup;
   searchingProgress = false;
@@ -92,15 +90,9 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
     private fb: FormBuilder,
     private dataService: YangSearchService,
     private modalService: NgbModal,
-    private ycValidations: YcValidationsService,
-    notifierService: NotifierService
-  ) {
-    this.notifier = notifierService;
-  }
+    private ycValidations: YcValidationsService
+  ) {}
 
-  public showNotification( type: string, message: string ): void {
-		this.notifier.notify( type, message );
-	}
 
   headerHeightGetter = () => {
     const columnHeaderTexts = [
