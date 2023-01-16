@@ -24,8 +24,8 @@ export class CronjobCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.status = this.cronjobData.status;
-    this.startDate = new Date(this.cronjobData.start * 1000);
-    this.endDate = new Date(this.cronjobData.end * 1000);
+    this.startDate = this.cronjobData['start'] ? new Date(this.cronjobData['start'] * 1000) : null;
+    this.endDate = this.cronjobData['end'] ? new Date(this.cronjobData['end'] * 1000) : null;
     this.lastSuccessfullDate = this.cronjobData['last_successfull'] ? new Date(this.cronjobData['last_successfull'] * 1000) : null;
     this.errorMessage = this.cronjobData.error;
     this.infoMessages = this.cronjobData.messages;
