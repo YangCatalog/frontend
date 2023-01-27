@@ -1,6 +1,10 @@
 ## Frontend Release Notes
 
-* ##### vm.m.p - 2023-MM-DD
+* ##### v5.9.0 - 2023-01-26
+
+  * Block YANG Search for input less than 3 characters [#9](https://github.com/YangCatalog/frontend/issues/9)
+  * Bugfix: Correctly display end dates for running cronjobs [#20](https://github.com/YangCatalog/frontend/issues/20)
+  * 'Include Drafts' checkbox added to the YANG Search options [#13](https://github.com/YangCatalog/frontend/issues/13)
 
 * ##### v5.8.0 - 2022-12-20
 

@@ -12,17 +12,17 @@
   <mat-card-content>
     <mat-spinner *ngIf="isLoading; else card" class="mx-auto"></mat-spinner>
     <ng-template #card>
-      <div>
+      <div *ngIf="startDate">
         <b>Start:</b>&nbsp;
         <span>{{ startDate | date:'MMM d, y, H:mm':'UTC' }} UTC</span>
       </div>
-      <div>
+      <div *ngIf="endDate">
         <b>End:</b>&nbsp;
-        <span>{{ endDate | date:'MMM d, y, H:mm':'UTC' }} UTC</span>
+        <span>{{ endDate | date:'MMM d, y, H:mm':'UTC' }} UTC</span>
       </div>
       <div *ngIf="lastSuccessfullDate">
         <b>Last successfull:</b>&nbsp;
-        <span>{{ lastSuccessfullDate | date:'MMM d, y, H:mm':'UTC' }} UTC</span>
+        <span>{{ lastSuccessfullDate | date:'MMM d, y, H:mm':'UTC' }} UTC</span>
       </div>
     </ng-template>
   </mat-card-content>
