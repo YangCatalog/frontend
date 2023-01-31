@@ -44,7 +44,14 @@
         <ng-template #revisionTemplate let-data="data">
           <select class="form-select" (change)="onRevisionSelectChange($event)" formControlName="moduleRevision">
             <option value="{{rev}}" *ngFor="let rev of infoData.revisions"
-              [selected]="rev === form.get('moduleRevision').value">{{rev}}</option>
+              [selected]="rev === form.get('moduleRevision').value">
+              <ng-container *ngIf="checkIfRatified(rev)">
+                &#10003; {{rev}}
+              </ng-container>
+              <ng-container *ngIf="checkIfRatified(rev) == false">
+                &#10007; {{rev}}
+              </ng-container>
+            </option>
           </select>
         </ng-template>
 

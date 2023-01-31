@@ -222,4 +222,8 @@ export class YangModuleDetailsComponent implements OnInit, OnDestroy {
     modalImplemtations.metadata = this.metaData.getPropertiesSorted(this.metaData.metaData['implementations'])
     modalImplemtations.implementations = this.infoData.data['implementations'] ? this.infoData.data['implementations'] : [];
   }
+
+  checkIfRatified(revision: string) {
+    return false;
+  }
 }
