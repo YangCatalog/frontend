@@ -121,7 +121,6 @@ export class YangModuleDetailsComponent implements OnInit, OnDestroy {
     }
 
     let requestModuleName = this.form.get('moduleName').value.trim();
-    let origRequestModuleName = requestModuleName;
     if (this.form.get('moduleRevision').value) {
       requestModuleName += '@' + this.form.get('moduleRevision').value;
     }
@@ -133,15 +132,13 @@ export class YangModuleDetailsComponent implements OnInit, OnDestroy {
 
     zip(
       this.dataService.getModuleInfoHelp().pipe(takeUntil(this.componentDestroyed)),
-      this.dataService.getModuleDetails(requestModuleName).pipe(takeUntil(this.componentDestroyed)),
-      this.dataService.getRevisionsMaturityLevel(origRequestModuleName)
+      this.dataService.getModuleDetails(requestModuleName).pipe(takeUntil(this.componentDestroyed))
     ).pipe(
       finalize(() => this.loadingDetailsProgress = false)
     ).subscribe(
-      ([meta, info, revMat]) => {
+      ([meta, info]) => {
         this.metaData = meta;
         this.infoData = info;
-        this.revisionsMaturityLevel = revMat;
         this.form.get('moduleRevision').setValue(this.infoData.data['revision']);
       },
       (err: HttpErrorResponse) => {
@@ -229,7 +226,7 @@ export class YangModuleDetailsComponent implements OnInit, OnDestroy {
   }
 
   checkIfRatified(revision: string) {
-    for (var revMat of this.revisionsMaturityLevel['revision_maturity_level']) {
+    for (var revMat of this.infoData['revisions']) {
       if (revMat['revision'] == revision) {
         return revMat['maturity-level'] == 'ratified';
       }

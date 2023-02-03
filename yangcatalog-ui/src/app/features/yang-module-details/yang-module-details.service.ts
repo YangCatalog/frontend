@@ -21,10 +21,6 @@ export class YangModuleDetailsService extends DataService {
     return this.customGet('api/yang-search/v2/completions/module/' + searchStr);
   }
 
-  getRevisionsMaturityLevel(moduleStr: string): Observable<any> {
-    return this.customGet('api/yang-search/v2/get-revisions-maturity-level/' + moduleStr);
-  }
-
   getModuleInfoHelp(): Observable<ModuleInfoMetaDataModel> {
     if (this.moduleInfoHelp) {
       return of(this.moduleInfoHelp);

@@ -43,13 +43,13 @@
         <!--templates for several types of response content-->
         <ng-template #revisionTemplate let-data="data">
           <select class="form-select" (change)="onRevisionSelectChange($event)" formControlName="moduleRevision">
-            <option value="{{rev}}" *ngFor="let rev of infoData.revisions"
-              [selected]="rev === form.get('moduleRevision').value">
-              <ng-container *ngIf="checkIfRatified(rev)">
-                &#10003; {{rev}}
+            <option value="{{rev.revision}}" *ngFor="let rev of infoData.revisions"
+              [selected]="rev.revision === form.get('moduleRevision').value">
+              <ng-container *ngIf="checkIfRatified(rev.revision)">
+                &#10003; {{rev.revision}}
               </ng-container>
-              <ng-container *ngIf="checkIfRatified(rev) == false">
-                &#10007; {{rev}}
+              <ng-container *ngIf="checkIfRatified(rev.revision) == false">
+                &#10007; {{rev.revision}}
               </ng-container>
             </option>
           </select>
