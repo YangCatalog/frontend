@@ -228,7 +228,7 @@ export class YangModuleDetailsComponent implements OnInit, OnDestroy {
   checkIfRatified(revision: string) {
     for (var revMat of this.infoData['revisions']) {
       if (revMat['revision'] == revision) {
-        return revMat['maturity-level'] == 'ratified';
+        return revMat['maturity_level'];
       }
     }
     return false;
