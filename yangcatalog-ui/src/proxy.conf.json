@@ -18,5 +18,9 @@
   "/private/stats/AllYANGPageMain.json": {
     "target": "http://127.0.0.1/",
     "secure": false
+  },
+  "/private/RFCStandard.json": {
+    "target": "http://127.0.0.1/",
+    "secure": false
   }
 }

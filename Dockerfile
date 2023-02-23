@@ -12,7 +12,7 @@ RUN echo postfix postfix/mailname string yangcatalog.org | debconf-set-selection
 RUN echo postfix postfix/main_mailer_type string 'Internet Site' | debconf-set-selections
 
 RUN set -ex && apt-get update && apt-get install -y --no-install-recommends \
-    vim rsync xinetd rsyslog postfix systemd nginx
+    vim rsync xinetd rsyslog postfix systemd libnginx-mod-http-geoip nginx
 
 RUN apt-get autoremove -y
 
