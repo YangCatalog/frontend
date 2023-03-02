@@ -167,9 +167,15 @@
                       placeholder="Fill the search term" />
 
                     <label class="control-label" for="advancedColumnSelect_{{i}}_{{j}}">in</label>
-                    <select class="form-select" id="advancedColumnSelect_{{i}}_{{j}}" formControlName="col">
+                    <select [(ngModel)]="selectedOption" class="form-select" id="advancedColumnSelect_{{i}}_{{j}}" formControlName="col">
                       <option value="{{col['value']}}" *ngFor="let col of columnsList">{{col['value']}}</option>
                     </select>
+                    
+                    <input type="checkbox" name="must" id="must_{{i}}_{{j}}" formControlName="must" checked>
+                    <label class="control-label" for="must_{{i}}_{{j}}">must</label>
+                    <input type="checkbox" name="regex" id="regex_{{i}}_{{j}}" formControlName="regex" *ngIf="['name', 'module-name', 'description'].includes(selectedOption)">
+                    <label class="control-label" for="regex_{{i}}_{{j}}" *ngIf="['name', 'module-name', 'description'].includes(selectedOption)">regex</label>
+
                     <button id="removeCriteriaBtn_{{i}}_{{j}}" class="btn btn-sm px-ml-5" aria-label="Remove this term"
                       [disabled]="form.get('advanced')['controls'].length === 1 && advSearchGroup['controls'].length === 1"
                       (click)="removeAdvSearchTerm(i, j)" ngbTooltip="Remove this term">
@@ -184,11 +190,6 @@
 
 
               </div>
-              <button id="addAdvGroup" class="btn " aria-label="Add one more term to this group"
-                (click)="addAdvSearchGroup()" ngbTooltip="Add one more group">
-                <i class="bi bi-plus-circle"></i>
-                Add group of search criteria
-              </button>
             </ng-template>
           </li>
 
