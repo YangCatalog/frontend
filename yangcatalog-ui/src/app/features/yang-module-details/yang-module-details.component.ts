@@ -221,12 +221,12 @@ export class YangModuleDetailsComponent implements OnInit, OnDestroy {
     }).componentInstance;
     modalImplemtations.name = this.infoData.data['name'];
     modalImplemtations.revision = this.infoData.data['revision'];
-    modalImplemtations.metadata = this.metaData.getPropertiesSorted(this.metaData.metaData['implementations'])
+    modalImplemtations.metadata = this.metaData.getPropertiesSorted(this.metaData.metaData['implementations']);
     modalImplemtations.implementations = this.infoData.data['implementations'] ? this.infoData.data['implementations'] : [];
   }
 
   checkIfRatified(revision: string) {
-    for (var revMat of this.infoData['revisions']) {
+    for (const revMat of this.infoData['revisions']) {
       if (revMat['revision'] == revision) {
         return revMat['is_rfc'];
       }

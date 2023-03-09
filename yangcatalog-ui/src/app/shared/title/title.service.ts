@@ -25,6 +25,6 @@ export class TitleService {
         }
         return;
       })
-    )
+    );
   }
 }

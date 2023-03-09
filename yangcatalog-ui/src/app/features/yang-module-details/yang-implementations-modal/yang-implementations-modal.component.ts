@@ -44,10 +44,10 @@ export class YangImplementationsModalComponent implements OnInit {
   }
 
   getImplementationsHref(property: string, implementation: ModuleImplementationModel) {
-    const vendorPath = 'vendor=' + implementation['vendor']
-    const platformPath = 'platform=' + implementation['platform']
-    const path = [vendorPath, platformPath].join('&')
+    const vendorPath = 'vendor=' + implementation['vendor'];
+    const platformPath = 'platform=' + implementation['platform'];
+    const path = [vendorPath, platformPath].join('&');
 
-    return this.myBaseUrl + '/yang-search/implementations?' + path
+    return this.myBaseUrl + '/yang-search/implementations?' + path;
   }
 }

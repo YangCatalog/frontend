@@ -16,7 +16,7 @@ export class ImpactWarningsComponent implements OnInit {
     { colId: 'warning', field: 'warning', headerName: 'Warnings' },
   ];
 
-  constructor(private modal: NgbActiveModal,) { }
+  constructor(private modal: NgbActiveModal) { }
 
   ngOnInit(): void {
     this.warningsObjs = this.warnings.map(w => {

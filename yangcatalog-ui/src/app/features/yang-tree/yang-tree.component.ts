@@ -73,7 +73,7 @@ export class YangTreeComponent implements OnInit, OnDestroy {
     pagination: false,
     isExternalFilterPresent: () => true,
     doesExternalFilterPass: (node: RowNode) => this.doesExternalFilterPass(node),
-    getRowStyle: params => { return { background: 'white' }; }
+    getRowStyle: params => ({ background: 'white' })
   };
 
   defaultColDef = {

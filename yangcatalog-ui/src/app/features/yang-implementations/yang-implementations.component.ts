@@ -12,9 +12,9 @@ import { YangImplementationsService } from './yang-implementations.service';
   styleUrls: ['./yang-implementations.component.scss']
 })
 export class YangImplementationsComponent implements OnInit, OnDestroy {
-  vendor = ''
+  vendor = '';
   platform = '';
-  title = 'YANG Implementations >> '
+  title = 'YANG Implementations >> ';
   selectedVersionName = '';
   softwareVersions: SoftwareVersion[];
   selectedVersion: SoftwareVersion;

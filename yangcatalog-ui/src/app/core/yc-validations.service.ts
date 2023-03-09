@@ -10,7 +10,7 @@ export class YcValidationsService {
 
   getNumberValidation(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
-      return (control.value && (!Number(control.value) && control.value !== '0')) ? { 'notNumber': { value: control.value } } : null;
+      return (control.value && (!Number(control.value) && control.value !== '0')) ? { notNumber: { value: control.value } } : null;
     };
   }
 
@@ -19,14 +19,14 @@ export class YcValidationsService {
       if (!control.parent) {
         return null;
       }
-      var isRegexSearch = control.parent.get('searchOptions').get('regularExpression').value;
-      var isValid = true;
+      const isRegexSearch = control.parent.get('searchOptions').get('regularExpression').value;
+      let isValid = true;
       try {
         new RegExp(control.value);
       } catch (e) {
         isValid = false;
       }
-      return (isRegexSearch && !isValid) ? { 'notValidRegex': { value: control.value } } : null;
+      return (isRegexSearch && !isValid) ? { notValidRegex: { value: control.value } } : null;
     };
   }
 

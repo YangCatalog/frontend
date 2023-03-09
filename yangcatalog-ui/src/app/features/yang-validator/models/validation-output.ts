@@ -2,11 +2,13 @@ export class ValidationOutput {
 
   private modulesToValidate: string[] = [];
   /**
-   * List of dependencies, for which there is more than one revision in repo and it is not clear, which revision should be used
+   * List of dependencies,
+   * for which there is more than one revision in repo and it is not clear, which revision should be used
    */
   private missing: any;
   /**
-   * List of dependencies uploaded by user, for which there is more than one revision in repo and it is not clear, which revision should be used
+   * List of dependencies uploaded by user,
+   * for which there is more than one revision in repo and it is not clear, which revision should be used
    */
   private existing: any;
   private cache: string;
@@ -75,15 +77,15 @@ export class ValidationOutput {
 
   getExistingRepoRevisions(moduleName: string): string[] {
     return (
-        this.existing[moduleName]['repo-dependencies']
-          .sort((a: any, b: any) => {
-            if (a < b) {
-              return 1;
-            } else {
-              return -1;
-            }
-          })
-      );
+      this.existing[moduleName]['repo-dependencies']
+        .sort((a: any, b: any) => {
+          if (a < b) {
+            return 1;
+          } else {
+            return -1;
+          }
+        })
+    );
   }
 
   getExistingUploadedRevision(moduleName: string): string {

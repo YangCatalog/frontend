@@ -31,7 +31,7 @@ export class ModuleInfoMetaDataModel {
     let result = '';
     if (isArray(property)) {
       let propertObj = this.metaData;
-      property.forEach(propertyName => {propertObj = propertObj[propertyName];});
+      property.forEach(propertyName => {propertObj = propertObj[propertyName]; });
       result = propertObj['help-text'];
     } else {
       result = this.metaData[property]['help-text'];

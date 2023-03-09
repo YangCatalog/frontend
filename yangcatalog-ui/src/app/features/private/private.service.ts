@@ -26,9 +26,9 @@ export class PrivateService extends DataService {
     return this.customGet('api/problematic-drafts').pipe(
       map(response => Object.keys(response).map(key => {
         return {
-          'draftName': key,
-          'xymError': response[key]
-        }
+          draftName: key,
+          xymError: response[key]
+        };
       }))
     );
   }

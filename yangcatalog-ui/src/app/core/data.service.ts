@@ -19,7 +19,7 @@ export class DataService {
   /**
    * Can be used when as a response is expected array of data objects, which should be converted to models objects
    */
-  protected getListOfModels<T>(restURI: string, modelType: { new(value: any): T; }): Observable<T[]> {
+  protected getListOfModels<T>(restURI: string, modelType: new(value: any) => T): Observable<T[]> {
     return this.customGet(restURI)
       .pipe(
         map(
@@ -29,7 +29,7 @@ export class DataService {
       );
   }
 
-  protected getWrappedListOfModels<T>(restURI: string, wrappingObjProperties: string[], modelType: { new(value: any): T; }): Observable<T[]> {
+  protected getWrappedListOfModels<T>(restURI: string, wrappingObjProperties: string[], modelType: new(value: any) => T): Observable<T[]> {
     return this.customGet(restURI).pipe(
       map(
         (arrayDataWrapper: any) => {
@@ -63,7 +63,7 @@ export class DataService {
    * Can be used when as a response is expected array of data objects, which should be converted to models objects
    */
   // tslint:disable-next-line:ban-types
-  protected getListOfModelsWithPostMethod<T>(restURI: string, modelType: { new(value: any): T; }, dataObject: Object): Observable<T[]> {
+  protected getListOfModelsWithPostMethod<T>(restURI: string, modelType: new(value: any) => T, dataObject: Object): Observable<T[]> {
     return this.httpClient
       .post(environment.REST_BASE_URL + restURI, dataObject, { withCredentials: true })
       .pipe(
@@ -77,7 +77,7 @@ export class DataService {
   /**
    * Can be used when as a response is expected single data object, which should be converted to model object
    */
-  protected getOneModel<T>(restURI: string, modelType: { new(value: any): T; }): Observable<T> {
+  protected getOneModel<T>(restURI: string, modelType: new(value: any) => T): Observable<T> {
     return this.httpClient
       .get(environment.REST_BASE_URL + restURI, { withCredentials: true })
       .pipe(
@@ -85,7 +85,7 @@ export class DataService {
       );
   }
 
-  protected getOneWrappedModel<T>(restURI: string, wrappingObjProperties: string[], modelType: { new(value: any): T; }): Observable<T> {
+  protected getOneWrappedModel<T>(restURI: string, wrappingObjProperties: string[], modelType: new(value: any) => T): Observable<T> {
     return this.httpClient
       .get(environment.REST_BASE_URL + restURI, { withCredentials: true })
       .pipe(

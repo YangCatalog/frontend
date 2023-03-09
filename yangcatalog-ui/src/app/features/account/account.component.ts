@@ -18,8 +18,8 @@ export class AccountComponent implements OnInit, OnDestroy {
   result: any;
   siteKey: string;
   fieldValidators = [Validators.required, Validators.maxLength(255), this.noWhitespaceValidator];
-  emailValidator = this.fieldValidators.concat(Validators.email)
-  minLengthValidator = this.fieldValidators.concat(Validators.minLength(25))
+  emailValidator = this.fieldValidators.concat(Validators.email);
+  minLengthValidator = this.fieldValidators.concat(Validators.minLength(25));
 
 
   customPatternErrorMessages: ErrorMessage[] = [
@@ -88,7 +88,7 @@ export class AccountComponent implements OnInit, OnDestroy {
         console.log(err);
         this.error = err;
         if (err.status === 409) {
-          this.form.controls['username'].setErrors({ 'existingUsername': true });
+          this.form.controls['username'].setErrors({ existingUsername: true });
         }
       }
     );
@@ -97,6 +97,6 @@ export class AccountComponent implements OnInit, OnDestroy {
   private noWhitespaceValidator(control: FormControl) {
     const isWhitespace = (control.value || '').trim().length === 0;
     const isValid = !isWhitespace;
-    return isValid ? null : { 'required': true };
+    return isValid ? null : { required: true };
   }
 }

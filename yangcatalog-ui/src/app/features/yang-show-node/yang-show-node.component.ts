@@ -50,7 +50,7 @@ export class YangShowNodeComponent implements OnInit, OnDestroy {
           // If displayed as modal window
           if (this.node) {
             this.parseNodeDetails();
-            this.location.go(this.uriPath)
+            this.location.go(this.uriPath);
             return this.dataService.getNodeDetails(this.node, this.path, this.revision);
           } else {
             return of(null);
@@ -72,7 +72,7 @@ export class YangShowNodeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.location.go('yang-search/yang_tree/' + this.node + '@' + this.revision)
+    this.location.go('yang-search/yang_tree/' + this.node + '@' + this.revision);
     this.componentDestroyed.next();
   }
 

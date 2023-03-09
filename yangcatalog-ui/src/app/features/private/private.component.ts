@@ -88,8 +88,8 @@ export class PrivateComponent implements OnInit, OnDestroy {
   problematicDraftsColDefs: ColDef[] = [
     {
       colId: '1', field: 'draftName', maxWidth: 400, headerName: 'Draft Name',
-      cellRenderer: function (params) {
-        return '<a target="_blank" href="https://www.ietf.org/archive/id/' + params.value + '">' + params.value + '</a>'
+      cellRenderer(params) {
+        return '<a target="_blank" href="https://www.ietf.org/archive/id/' + params.value + '">' + params.value + '</a>';
       }
     },
     { colId: '2', field: 'xymError', headerName: 'XYM Error' }
@@ -115,27 +115,27 @@ export class PrivateComponent implements OnInit, OnDestroy {
   ciscoStatsSelection = 'XR';
   showStatsOnly = false;
   currentStats = {};
-  problematicDrafts = {}
+  problematicDrafts = {};
   statsError = null;
   privateError = null;
-  validatorsVersion = {}
+  validatorsVersion = {};
   tabIds = {
-    'Statistics': 1,
-    'SDO': 2,
-    'Graphs': 3,
-    'IETF': 4,
-    'Cisco': 5,
-    'Juniper': 6,
-    'Huawei': 7,
-    'Ciena': 8,
-    'Fujitsu': 9,
-    'Nokia': 10,
-    'Etsi': 11,
-    'OpenROADM': 12
-  }
+    Statistics: 1,
+    SDO: 2,
+    Graphs: 3,
+    IETF: 4,
+    Cisco: 5,
+    Juniper: 6,
+    Huawei: 7,
+    Ciena: 8,
+    Fujitsu: 9,
+    Nokia: 10,
+    Etsi: 11,
+    OpenROADM: 12
+  };
   queryParams = {
-    'tab': 'Statistics'
-  }
+    tab: 'Statistics'
+  };
 
   constructor(
     private dataService: PrivateService,
@@ -172,7 +172,7 @@ export class PrivateComponent implements OnInit, OnDestroy {
       if (results.query.hasOwnProperty('tab')) {
         this.queryParams['tab'] = results.query['tab'];
         if (results.query['tab'] in this.tabIds) {
-          this.active = this.tabIds[results.query['tab']]
+          this.active = this.tabIds[results.query['tab']];
         } else {
           this.queryParams['tab'] = null;
         }
@@ -614,7 +614,7 @@ export class PrivateComponent implements OnInit, OnDestroy {
 
   onNavTabChange(event: any) {
     const newTabName = Object.keys(this.tabIds).find(key => this.tabIds[key] === event.nextId);
-    this.queryParams['tab'] = newTabName
+    this.queryParams['tab'] = newTabName;
     this.updateURL();
   }
 

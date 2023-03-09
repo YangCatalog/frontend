@@ -278,7 +278,7 @@ export class ImpactAnalysisComponent implements OnInit, OnDestroy, AfterViewInit
       takeUntil(this.componentDestroyed)
     ).subscribe(impactResult => {
       this.warnings.push(...impactResult.warnings);
-      if (!impactResult.name) return;
+      if (!impactResult.name) { return; }
       this.mainResults.push(impactResult);
       this.mainResultsNames.push(impactResult.name);
       this.addOrganizations(impactResult.getOrganisations());
@@ -439,7 +439,7 @@ export class ImpactAnalysisComponent implements OnInit, OnDestroy, AfterViewInit
         this.onClusterMaturityToggle(false);
       }
       this.organizations.forEach((organization: string) => {
-        let organizationNodes: ImpactAnalysisModel[] = [];
+        const organizationNodes: ImpactAnalysisModel[] = [];
 
         this.mainResults.forEach((res: ImpactAnalysisModel) => {
           const orgMembers = res.getOrganizationMembers(organization);
@@ -448,7 +448,7 @@ export class ImpactAnalysisComponent implements OnInit, OnDestroy, AfterViewInit
           organizationNodes.push(...uniqueOrgMembers);
         });
 
-        let membersCount = organizationNodes.length;
+        const membersCount = organizationNodes.length;
         const clusterOptionsByData = {
           joinCondition: (childOptions) => {
             return childOptions['organization'] === organization && this.mainResults.findIndex(res => res.name === childOptions['label']) === -1;
@@ -494,7 +494,7 @@ export class ImpactAnalysisComponent implements OnInit, OnDestroy, AfterViewInit
 
     } else {
       this.organizations.forEach((organization: string) => {
-        let organizationNodes: ImpactAnalysisModel[] = [];
+        const organizationNodes: ImpactAnalysisModel[] = [];
 
         this.mainResults.forEach((res: ImpactAnalysisModel) => {
           const orgMembers = res.getOrganizationMembers(organization);
@@ -517,7 +517,7 @@ export class ImpactAnalysisComponent implements OnInit, OnDestroy, AfterViewInit
         this.onClusterOrganizationsToggle(false);
       }
       this.maturities.forEach((maturity: string) => {
-        let maturityNodes: ImpactAnalysisModel[] = [];
+        const maturityNodes: ImpactAnalysisModel[] = [];
 
         this.mainResults.forEach((res: ImpactAnalysisModel) => {
           const matMembers = res.getMaturityMembers(maturity);
@@ -525,7 +525,7 @@ export class ImpactAnalysisComponent implements OnInit, OnDestroy, AfterViewInit
           const uniqueMatMembers = matMembersNoMains.filter(mat => maturityNodes.findIndex(node => node.name === mat.name) === -1);
           maturityNodes.push(...uniqueMatMembers);
         });
-        let membersCount = maturityNodes.length;
+        const membersCount = maturityNodes.length;
         const clusterOptionsByData = {
           joinCondition: (childOptions) => {
             return childOptions['maturity'] === maturity && this.mainResults.findIndex(res => res.name === childOptions['label']) === -1;
@@ -571,7 +571,7 @@ export class ImpactAnalysisComponent implements OnInit, OnDestroy, AfterViewInit
 
     } else {
       this.maturities.forEach((maturity: string) => {
-        let maturityNodes: ImpactAnalysisModel[] = [];
+        const maturityNodes: ImpactAnalysisModel[] = [];
 
         this.mainResults.forEach((res: ImpactAnalysisModel) => {
           const matMembers = res.getMaturityMembers(maturity);
@@ -673,7 +673,7 @@ export class ImpactAnalysisComponent implements OnInit, OnDestroy, AfterViewInit
     }).componentInstance;
 
     if (selectedClusterId.indexOf('_org_') !== -1) {
-      let organizationNodes: ImpactAnalysisModel[] = [];
+      const organizationNodes: ImpactAnalysisModel[] = [];
 
       this.mainResults.forEach((res: ImpactAnalysisModel) => {
         const orgMembers = res.getOrganizationMembers(selectedClusterId.replace('cluster_org_', ''));
@@ -684,7 +684,7 @@ export class ImpactAnalysisComponent implements OnInit, OnDestroy, AfterViewInit
 
       modalNodeDetail.nodesList = organizationNodes;
     } else {
-      let maturityNodes: ImpactAnalysisModel[] = [];
+      const maturityNodes: ImpactAnalysisModel[] = [];
 
       this.mainResults.forEach((res: ImpactAnalysisModel) => {
         const matMembers = res.getMaturityMembers(selectedClusterId.replace('cluster_mat_', ''));

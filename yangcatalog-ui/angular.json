@@ -36,6 +36,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "ngx-lightbox",
+              "ag-grid-angular",
+              "lodash",
+              "@fortawesome/free-solid-svg-icons",
+              "@fortawesome/free-regular-svg-icons"
+            ],
             "aot": true,
             "outputPath": "dist/yangcatalog-ui",
             "index": "src/index.html",
@@ -49,10 +56,10 @@
             "styles": [
               "src/scss/yc.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/ngx-lightbox/lightbox.css"
+              "node_modules/ngx-lightbox/lightbox.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "scripts": []
           },
           "configurations": {
             "production": {

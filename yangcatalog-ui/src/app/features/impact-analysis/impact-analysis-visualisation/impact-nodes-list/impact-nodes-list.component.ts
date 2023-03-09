@@ -27,7 +27,7 @@ export class ImpactNodesListComponent implements OnInit {
     cellStyle: { 'white-space': 'normal' },
   };
 
-  constructor(private modal: NgbActiveModal,) { }
+  constructor(private modal: NgbActiveModal) { }
 
   ngOnInit(): void {
 

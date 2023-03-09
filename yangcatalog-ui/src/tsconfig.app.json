@@ -2,7 +2,9 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
-    "types": []
+    "types": [],
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   },
   "files": [
     "main.ts",

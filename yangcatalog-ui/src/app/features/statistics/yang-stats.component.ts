@@ -220,6 +220,6 @@ export class YangStatsComponent implements OnInit, OnDestroy {
     const tallestHeaderTextHeight = Math.max(...clientHeights);
 
     return tallestHeaderTextHeight;
-  };
+  }
 
 }

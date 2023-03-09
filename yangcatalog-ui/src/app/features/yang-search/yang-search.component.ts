@@ -76,8 +76,8 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
     headerComponentParams: this.headerComponentParams
   };
   gridOptions: GridOptions = {
-    onFirstDataRendered: () => { return this.headerHeightGetter; },
-    onColumnResized: () => { return this.headerHeightGetter; }
+    onFirstDataRendered: () => this.headerHeightGetter,
+    onColumnResized: () => this.headerHeightGetter
   };
   resultsMaximized = false;
   searchedTermToBeHighlighted = '';
@@ -91,7 +91,8 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
     private dataService: YangSearchService,
     private modalService: NgbModal,
     private ycValidations: YcValidationsService
-  ) { }
+  ) {}
+
 
   headerHeightGetter = () => {
     const columnHeaderTexts = [
@@ -103,7 +104,7 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
     const tallestHeaderTextHeight = Math.max(...clientHeights);
 
     return tallestHeaderTextHeight;
-  };
+  }
 
   ngOnInit() {
     this.setColumnsList();
@@ -268,9 +269,8 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
     this.searchedTermToBeHighlighted = this.form.get('searchTerm').value;
     this.results = null;
     this.showWarnings = true;
-    this.warnings = []
+    this.warnings = [];
     this.currentColDefs = this.allColDefs.filter((col: ColDef) => this.form.get('outputColumns').value.indexOf(col.field) !== -1);
-
     var subSearchInput = this.prepareSubSearchInput();  // params in Advanced Search tab
 
     if (subSearchInput.length == 0) {

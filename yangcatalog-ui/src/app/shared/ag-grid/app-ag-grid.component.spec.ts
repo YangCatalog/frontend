@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AppAgGridComponent } from './app-ag-grid.component';
 
@@ -6,11 +6,11 @@ describe('KfmAgGridComponent', () => {
   let component: AppAgGridComponent;
   let fixture: ComponentFixture<AppAgGridComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppAgGridComponent ]
+      declarations: [AppAgGridComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

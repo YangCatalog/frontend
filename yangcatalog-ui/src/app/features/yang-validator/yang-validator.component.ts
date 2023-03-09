@@ -13,7 +13,6 @@ import { FileUploadFormComponent } from '../../shared/file-upload-form/file-uplo
 import { MissingModulesSelectionComponent } from './missing-modules-confirmation/missing-modules-selection.component';
 import { ChosenMissingRevsInput } from './models/chosen-missing-revs-input';
 import { ValidationOutput } from './models/validation-output';
-import { ValidationError } from './models/validation-error';
 import { YangValidatorService } from './yang-validator.service';
 
 
@@ -115,8 +114,8 @@ export class YangValidatorComponent implements OnInit, OnDestroy {
   private getVersions() {
     this.dataService.getValidatorsVersion().subscribe(versions => {
       this.versions = Object.keys(versions).reduce((acc, key) => {
-        let new_key = key.split('-version')[0];
-        acc[new_key] = versions[key].split(' ').pop();
+        const newKey = key.split('-version')[0];
+        acc[newKey] = versions[key].split(' ').pop();
         return acc;
       }, {});
     });
@@ -189,7 +188,7 @@ export class YangValidatorComponent implements OnInit, OnDestroy {
     this.dataService.validateRfcByNumber(this.rfcNumberForm.get('rfcNumber').value.trim())
       .pipe(
         finalize(() => {
-          this.validatingRfcNumberProgress = false
+          this.validatingRfcNumberProgress = false;
           this.updateURL();
         }),
         takeUntil(merge(this.formTypeChanged, this.componentDestroyed))
@@ -243,14 +242,14 @@ export class YangValidatorComponent implements OnInit, OnDestroy {
         err => {
           if (err instanceof (HttpErrorResponse)) {
             this.rfcError = {
-              'message': err.error['Error'],
-              'type': 'error'
-            }
+              message: err.error['Error'],
+              type: 'error'
+            };
           } else {
             this.rfcError = {
-              'message': err.message,
-              'type': err.type
-            }
+              message: err.message,
+              type: err.type
+            };
           }
         }
       );
@@ -284,7 +283,7 @@ export class YangValidatorComponent implements OnInit, OnDestroy {
     this.dataService.validateDraftByName(this.draftNameForm.get('draftName').value.trim())
       .pipe(
         finalize(() => {
-          this.validatingDraftNameProgress = false
+          this.validatingDraftNameProgress = false;
           this.updateURL();
         }),
         takeUntil(merge(this.componentDestroyed, this.formTypeChanged))
@@ -338,14 +337,14 @@ export class YangValidatorComponent implements OnInit, OnDestroy {
         err => {
           if (err instanceof (HttpErrorResponse)) {
             this.draftNameError = {
-              'message': err.error['Error'],
-              'type': 'error'
-            }
+              message: err.error['Error'],
+              type: 'error'
+            };
           } else {
             this.draftNameError = {
-              'message': err.message,
-              'type': err.type
-            }
+              message: err.message,
+              type: err.type
+            };
           }
         }
       );
@@ -406,14 +405,14 @@ export class YangValidatorComponent implements OnInit, OnDestroy {
         err => {
           if (err instanceof (HttpErrorResponse)) {
             this.filesError = {
-              'message': err.error['Error'],
-              'type': 'error'
-            }
+              message: err.error['Error'],
+              type: 'error'
+            };
           } else {
             this.filesError = {
-              'message': err.message,
-              'type': err.type
-            }
+              message: err.message,
+              type: err.type
+            };
           }
         }
       );
@@ -474,14 +473,14 @@ export class YangValidatorComponent implements OnInit, OnDestroy {
         err => {
           if (err instanceof (HttpErrorResponse)) {
             this.draftError = {
-              'message': err.error['Error'],
-              'type': 'error'
-            }
+              message: err.error['Error'],
+              type: 'error'
+            };
           } else {
             this.draftError = {
-              'message': err.message,
-              'type': err.type
-            }
+              message: err.message,
+              type: err.type
+            };
           }
         }
       );
@@ -532,7 +531,7 @@ export class YangValidatorComponent implements OnInit, OnDestroy {
 
   setActiveForm(form: string) {
     this.activeForm = form;
-    this.clearErrors()
+    this.clearErrors();
   }
 
   scrollToResults() {
@@ -558,14 +557,14 @@ export class YangValidatorComponent implements OnInit, OnDestroy {
     const draftName = this.draftNameForm.get('draftName').value.trim();
     if (this.activeForm === 'rfcNumber') {
       this.queryParams = {
-        'rfc': rfcNumber,
-        'draft': null
-      }
+        rfc: rfcNumber,
+        draft: null
+      };
     } else {
       this.queryParams = {
-        'rfc': null,
-        'draft': draftName
-      }
+        rfc: null,
+        draft: draftName
+      };
     }
   }
 }

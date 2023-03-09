@@ -15,7 +15,7 @@ import { CoreModule } from './core/core.module';
 import { StaticContentModule } from './features/static-content/static-content.module';
 import { AppAgGridModule } from './shared/ag-grid/app-ag-grid.module';
 import { TitleService } from './shared/title/title.service';
-
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -40,6 +40,7 @@ import { TitleService } from './shared/title/title.service';
       trackerUrl: environment.MATOMO_TRACKER_URL,
       disabled: !environment.production // Remove this line to use Matomo on DEV environment
     }),
+    ToastrModule.forRoot(),
   ],
   providers: [TitleService],
   exports: [],

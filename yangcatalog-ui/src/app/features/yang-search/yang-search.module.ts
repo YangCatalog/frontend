@@ -8,7 +8,6 @@ import { AppAgGridModule } from '../../shared/ag-grid/app-ag-grid.module';
 import { YangSearchRoutingModule } from './yang-search-routing.module';
 import { YangSearchComponent } from './yang-search.component';
 
-
 @NgModule({
   declarations: [YangSearchComponent],
   imports: [

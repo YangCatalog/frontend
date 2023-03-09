@@ -1,5 +1,14 @@
 ## Frontend Release Notes
 
+* ##### v5.10.0 - 2023-03-07
+
+  * Source code improved by npm lint
+  * Package vulnerabilities removed using npm audit
+  * New: maintanance notifications using ngx-toastr added [#10](https://github.com/YangCatalog/frontend/issues/10)
+  * Angular core updated from version 9.1 to 10.2 [#26](https://github.com/YangCatalog/frontend/issues/26)
+  * Frontend Docker image updated to use Ubuntu 20.04 [#23](https://github.com/YangCatalog/frontend/issues/23)
+  * Visual distinction for RFC revisions of modules [#16](https://github.com/YangCatalog/frontend/issues/16)
+
 * ##### v5.9.0 - 2023-01-26
 
   * Block YANG Search for input less than 3 characters [#9](https://github.com/YangCatalog/frontend/issues/9)
