@@ -82,6 +82,9 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
   resultsMaximized = false;
   searchedTermToBeHighlighted = '';
   columnsList: { name: string; value: string; }[];
+  
+  // Initializing dict for select options in yangsearch
+  selectedOption = {}
 
   constructor(
     private fb: FormBuilder,
@@ -237,6 +240,28 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
     return this.form.get(formGroupName).value.indexOf(myValue) !== -1;
   }
 
+  selectAdvanceSearch(isAdvTab: boolean) {
+    const el_input = document.getElementById('searchTermInput');
+    const el_label = document.getElementById('searchTermInputLabel');
+    
+    if (isAdvTab && el_input.style.display !== 'none') {
+      el_input.style.display = 'none';
+      el_label.style.display = 'none';
+      
+      // Updating validator so that main search term is empty
+      this.form.get('searchTerm').setValidators([]);
+
+    } else if (!isAdvTab && el_input.style.display === 'none') {
+      el_input.style.display = 'block';
+      el_label.style.display = 'block';
+
+      // Updating validator so that main search term is not empty
+      this.form.get('searchTerm').setValidators([Validators.required, Validators.minLength(3), this.ycValidations.regexpValidation()]);
+
+    }
+    this.form.get('searchTerm').updateValueAndValidity();
+  }
+
   onSearchClick() {
     this.searchingProgress = true;
     this.error = null;
@@ -297,6 +322,14 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
         processedSubSearchInput[key] = {'string': subSearchInput[0][key][0]['term'], 'must': subSearchInput[0][key][0]['must']};
         if (subSearchInput[0][key][0].hasOwnProperty('regex')) {
           processedSubSearchInput[key]['regex'] = subSearchInput[0][key][0]['regex'];
+        }
+        if (key == 'module-name') {  // backend uses another notion of this parameter
+          processedSubSearchInput['module'] = processedSubSearchInput['module-name'];
+          delete processedSubSearchInput['module-name'];
+        }
+        if (key == 'description') {  // need to add additional parameters to description
+          processedSubSearchInput[key]['case_insensitive'] = this.form.get('searchOptions').get('caseSensitive').value;
+          processedSubSearchInput[key]['use_synonyms'] = this.form.get('searchOptions').get('useSynonyms').value;
         }
       });
 

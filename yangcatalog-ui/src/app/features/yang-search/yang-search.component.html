@@ -8,13 +8,13 @@
             encountered an unknown error.'}}</ngb-alert>
 
 
-          <label class="control-label" for="searchTermInput">Search term</label>
+          <label id="searchTermInputLabel" class="control-label" for="searchTermInput">Search term</label>
           <input id="searchTermInput" formControlName="searchTerm" type="text" class="form-control"
             placeholder="Enter your search term" />
 
         </div>
         <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-          <li [ngbNavItem]="1">
+          <li [ngbNavItem]="1" (click)="selectAdvanceSearch(false)">
             <a ngbNavLink>Search Options</a>
             <ng-template ngbNavContent>
               <div formGroupName="searchOptions" class="options-category">
@@ -64,7 +64,7 @@
               </div>
             </ng-template>
           </li>
-          <li [ngbNavItem]="4">
+          <li [ngbNavItem]="4" (click)="selectAdvanceSearch(false)">
             <a ngbNavLink>Schema Types</a>
             <ng-template ngbNavContent>
               <div formGroupName="schemaTypes">
@@ -108,7 +108,7 @@
               </div>
             </ng-template>
           </li>
-          <li [ngbNavItem]="5">
+          <li [ngbNavItem]="5" (click)="selectAdvanceSearch(false)">
             <a ngbNavLink>Output Columns</a>
             <ng-template ngbNavContent>
               <div formGroupName="outputColumns">
@@ -153,7 +153,7 @@
               </div>
             </ng-template>
           </li>
-          <li [ngbNavItem]="6">
+          <li [ngbNavItem]="6" (click)="selectAdvanceSearch(true)">
             <a ngbNavLink>Advanced search</a>
             <ng-template ngbNavContent>
               <div *ngFor="let advSearchGroup of form.get('advanced')['controls']; let i = index"
@@ -167,14 +167,14 @@
                       placeholder="Fill the search term" />
 
                     <label class="control-label" for="advancedColumnSelect_{{i}}_{{j}}">in</label>
-                    <select [(ngModel)]="selectedOption" class="form-select" id="advancedColumnSelect_{{i}}_{{j}}" formControlName="col">
+                    <select [(ngModel)]="selectedOption[j]" class="form-select" id="advancedColumnSelect_{{i}}_{{j}}" formControlName="col">
                       <option value="{{col['value']}}" *ngFor="let col of columnsList">{{col['value']}}</option>
                     </select>
                     
                     <input type="checkbox" name="must" id="must_{{i}}_{{j}}" formControlName="must" checked>
                     <label class="control-label" for="must_{{i}}_{{j}}">must</label>
-                    <input type="checkbox" name="regex" id="regex_{{i}}_{{j}}" formControlName="regex" *ngIf="['name', 'module-name', 'description'].includes(selectedOption)">
-                    <label class="control-label" for="regex_{{i}}_{{j}}" *ngIf="['name', 'module-name', 'description'].includes(selectedOption)">regex</label>
+                    <input type="checkbox" name="regex" id="regex_{{i}}_{{j}}" formControlName="regex" *ngIf="['name', 'module-name', 'description'].includes(selectedOption[j])">
+                    <label class="control-label" for="regex_{{i}}_{{j}}" *ngIf="['name', 'module-name', 'description'].includes(selectedOption[j])">regex</label>
 
                     <button id="removeCriteriaBtn_{{i}}_{{j}}" class="btn btn-sm px-ml-5" aria-label="Remove this term"
                       [disabled]="form.get('advanced')['controls'].length === 1 && advSearchGroup['controls'].length === 1"
