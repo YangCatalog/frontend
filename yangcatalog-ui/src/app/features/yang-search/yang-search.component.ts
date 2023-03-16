@@ -83,9 +83,6 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
   searchedTermToBeHighlighted = '';
   columnsList: { name: string; value: string; }[];
   
-  // Initializing dict for select options in yangsearch
-  selectedOption = {}
-
   constructor(
     private fb: FormBuilder,
     private dataService: YangSearchService,
@@ -463,7 +460,6 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
     const advancedFormArray: FormArray = this.form.get('advanced') as FormArray;
     const advGroupArray: FormArray = advancedFormArray.at(groupIndex) as FormArray;
     advGroupArray.removeAt(termIndex);
-    delete this.selectedOption[termIndex];
     if (advGroupArray.length === 0) {
       advancedFormArray.removeAt(groupIndex);
     }
