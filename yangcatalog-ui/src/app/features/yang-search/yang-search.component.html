@@ -178,6 +178,10 @@
                     <label class="control-label" for="must_{{i}}_{{j}}">must</label>
                     <input type="checkbox" name="regex" id="regex_{{i}}_{{j}}" formControlName="regex" *ngIf="['name', 'module-name', 'description'].includes(selectedOption[j])">
                     <label class="control-label" for="regex_{{i}}_{{j}}" *ngIf="['name', 'module-name', 'description'].includes(selectedOption[j])">regex</label>
+                    <input type="checkbox" name="case_insensitive" id="case_insensitive_{{i}}_{{j}}" formControlName="case_insensitive" *ngIf="'description' == selectedOption[j]">
+                    <label class="control-label" for="case_insensitive_{{i}}_{{j}}" *ngIf="'description' == selectedOption[j]">case insensitive</label>
+                    <input type="checkbox" name="use_synonyms" id="use_synonyms_{{i}}_{{j}}" formControlName="use_synonyms" *ngIf="'description' == selectedOption[j]">
+                    <label class="control-label" for="use_synonyms_{{i}}_{{j}}" *ngIf="'description' == selectedOption[j]">use synonyms</label>
 
                     <button id="removeCriteriaBtn_{{i}}_{{j}}" class="btn btn-sm px-ml-5" aria-label="Remove this term"
                       [disabled]="form.get('advanced')['controls'].length === 1 && advSearchGroup['controls'].length === 1"

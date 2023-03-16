@@ -197,6 +197,8 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
               col: ['name'],
               must: [true],
               regex: [false],
+              case_insensitive: [true],
+              use_synonyms: [false],
               op: ['and'],
             }
           )
@@ -318,6 +320,7 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
 
       var processedSubSearchInput: AdvancedSubSearchInput = {};
       // TODO - now we just use the first group, maybe in the future we will return to multiple
+      console.log(subSearchInput);
       Object.keys(subSearchInput[0]).forEach(key => {
         processedSubSearchInput[key] = {'string': subSearchInput[0][key][0]['term'], 'must': subSearchInput[0][key][0]['must']};
         if (subSearchInput[0][key][0].hasOwnProperty('regex')) {
@@ -328,8 +331,8 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
           delete processedSubSearchInput['module-name'];
         }
         if (key == 'description') {  // need to add additional parameters to description
-          processedSubSearchInput[key]['case_insensitive'] = this.form.get('searchOptions').get('caseSensitive').value;
-          processedSubSearchInput[key]['use_synonyms'] = this.form.get('searchOptions').get('useSynonyms').value;
+          processedSubSearchInput[key]['case_insensitive'] = subSearchInput[0][key][0]['case_insensitive'];
+          processedSubSearchInput[key]['use_synonyms'] = subSearchInput[0][key][0]['use_synonyms'];
         }
       });
 
@@ -406,10 +409,20 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
             if (!subResult.hasOwnProperty(control.get('col').value)) {
               subResult[control.get('col').value] = [];
             }
-            if (['name', 'module-name', 'description'].includes(control.get('col').value)) {
-              subResult[control.get('col').value].push({'term': control.get('term').value, 'must': control.get('must').value, 'regex': control.get('regex').value});
+            if ('description' == control.get('col').value) {
+              subResult[control.get('col').value].push({'term': control.get('term').value, 
+                                                        'must': control.get('must').value, 
+                                                        'regex': control.get('regex').value,
+                                                        'case_insensitive': control.get('case_insensitive').value,
+                                                        'use_synonyms': control.get('use_synonyms').value});
+            }
+            else if (['name', 'module-name'].includes(control.get('col').value)) {
+              subResult[control.get('col').value].push({'term': control.get('term').value, 
+                                                        'must': control.get('must').value, 
+                                                        'regex': control.get('regex').value});
             } else {
-              subResult[control.get('col').value].push({'term': control.get('term').value, 'must': control.get('must').value});
+              subResult[control.get('col').value].push({'term': control.get('term').value, 
+                                                        'must': control.get('must').value});
             }
             hasSomeInput = true;
           }
@@ -438,6 +451,8 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
       col: ['name'],
       must: [true],
       regex: [false],
+      case_insensitive: [true],
+      use_synonyms: [false],
       op: ['and'],
     }
     );
@@ -448,6 +463,7 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
     const advancedFormArray: FormArray = this.form.get('advanced') as FormArray;
     const advGroupArray: FormArray = advancedFormArray.at(groupIndex) as FormArray;
     advGroupArray.removeAt(termIndex);
+    delete this.selectedOption[termIndex];
     if (advGroupArray.length === 0) {
       advancedFormArray.removeAt(groupIndex);
     }
