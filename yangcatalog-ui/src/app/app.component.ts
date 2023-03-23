@@ -11,7 +11,6 @@ import { AppService } from './app.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  private toastr: ToastrService;
 
   defaultTitle = 'YANG Catalog';
 
@@ -20,22 +19,21 @@ export class AppComponent implements OnInit {
     private title: Title,
     private tracker: MatomoTracker,
     private dataService: AppService,
-    private toastrService: ToastrService) {
-      this.toastr = toastrService;
-    }
+    private toastrService: ToastrService) { }
 
   public showNotification() {
     this.dataService.getNotificationJson().subscribe(
-      notification_json => {
-        if ('type' in notification_json && 'message' in notification_json) {
-          if (notification_json['type'] == 'info') {
-            this.toastr.info(notification_json['message'], '', {disableTimeOut: true, closeButton: true, positionClass: 'toast-bottom-right'});
-          } else if (notification_json['type'] == 'warning') {
-            this.toastr.warning(notification_json['message'], '', {disableTimeOut: true, closeButton: true, positionClass: 'toast-bottom-right'});
+      notificationJson => {
+        if ('type' in notificationJson && 'message' in notificationJson) {
+          const override = { disableTimeOut: true, closeButton: true, positionClass: 'toast-bottom-right' };
+          if (notificationJson['type'] === 'info') {
+            this.toastrService.info(notificationJson['message'], '', override);
+          } else if (notificationJson['type'] === 'warning') {
+            this.toastrService.warning(notificationJson['message'], '', override);
           }
         }
       },
-      error => {}
+      error => { }
     );
   }
 

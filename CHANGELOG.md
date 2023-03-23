@@ -1,5 +1,9 @@
 ## Frontend Release Notes
 
+* ##### v5.10.1 - 2023-03-20
+
+  * Bugfix: compilation results table displaying [#30](https://github.com/YangCatalog/frontend/issues/30)
+
 * ##### v5.10.0 - 2023-03-07
 
   * Source code improved by npm lint

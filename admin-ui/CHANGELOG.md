@@ -1,7 +1,5 @@
 ## Admin UI Release Notes
 
-* ##### vm.m.p - 2022-MM-DD
-
 * ##### v5.5.0 - 2022-08-16
 
   * No changes - released with other [deployment submodules](https://github.com/YangCatalog/deployment)

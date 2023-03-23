@@ -1,7 +1,5 @@
 ## YANG Catalog UI Release Notes
 
-* ##### vm.m.p - 2022-MM-DD
-
 * ##### v5.5.0 - 2022-08-16
 
   * Check if regex is valid if using regex search [#97](https://github.com/YangCatalog/yangcatalog-ui/issues/97)
