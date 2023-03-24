@@ -82,7 +82,7 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
   resultsMaximized = false;
   searchedTermToBeHighlighted = '';
   columnsList: { name: string; value: string; }[];
-  
+
   constructor(
     private fb: FormBuilder,
     private dataService: YangSearchService,
@@ -243,11 +243,11 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
   selectAdvanceSearch(isAdvTab: boolean) {
     const el_input = document.getElementById('searchTermInput');
     const el_label = document.getElementById('searchTermInputLabel');
-    
+
     if (isAdvTab && el_input.style.display !== 'none') {
       el_input.style.display = 'none';
       el_label.style.display = 'none';
-      
+
       // Updating validator so that main search term is empty
       this.form.get('searchTerm').setValidators([]);
 
@@ -270,7 +270,7 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
     this.showWarnings = true;
     this.warnings = [];
     this.currentColDefs = this.allColDefs.filter((col: ColDef) => this.form.get('outputColumns').value.indexOf(col.field) !== -1);
-    var subSearchInput = this.prepareSubSearchInput();  // params in Advanced Search tab
+    let subSearchInput = this.prepareSubSearchInput();  // params in Advanced Search tab
 
     if (subSearchInput.length == 0) {
       // simple search
@@ -279,7 +279,7 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
       const input = {
         'searched-term': this.form.get('searchTerm').value,
         'case-sensitive': this.form.get('searchOptions').get('caseSensitive').value,
-        'type': this.form.get('searchOptions').get('regularExpression').value ? 'regexp' : 'term',
+        type: this.form.get('searchOptions').get('regularExpression').value ? 'regexp' : 'term',
         'include-mibs': this.form.get('searchOptions').get('includeMibs').value,
         'latest-revision': this.form.get('searchOptions').get('onlyLatestRevs').value,
         'use-synonyms': this.form.get('searchOptions').get('useSynonyms').value,
@@ -297,10 +297,10 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
       ).subscribe(
         results => {
           if (results['max-hits']) {
-            this.warnings.push('Maximum number of results reached. Not all results will be shown.')
+            this.warnings.push('Maximum number of results reached. Not all results will be shown.');
           }
           if (results['timeout']) {
-            this.warnings.push('Timeout while searching. Please try searching for something more specific.')
+            this.warnings.push('Timeout while searching. Please try searching for something more specific.');
           }
           this.results = results;
         },
@@ -315,11 +315,11 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
       console.log('advanced search with params:');
       console.log(subSearchInput);
 
-      var processedSubSearchInput: AdvancedSubSearchInput = {};
+      let processedSubSearchInput: AdvancedSubSearchInput = {};
       // TODO - now we just use the first group, maybe in the future we will return to multiple
       console.log(subSearchInput);
       Object.keys(subSearchInput[0]).forEach(key => {
-        processedSubSearchInput[key] = {'string': subSearchInput[0][key][0]['term'], 'must': subSearchInput[0][key][0]['must']};
+        processedSubSearchInput[key] = {string: subSearchInput[0][key][0]['term'], must: subSearchInput[0][key][0]['must']};
         if (subSearchInput[0][key][0].hasOwnProperty('regex')) {
           processedSubSearchInput[key]['regex'] = subSearchInput[0][key][0]['regex'];
         }
@@ -350,10 +350,10 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
       ).subscribe(
         results => {
           if (results['max-hits']) {
-            this.warnings.push('Maximum number of results reached. Not all results will be shown.')
+            this.warnings.push('Maximum number of results reached. Not all results will be shown.');
           }
           if (results['timeout']) {
-            this.warnings.push('Timeout while searching. Please try searching for something more specific.')
+            this.warnings.push('Timeout while searching. Please try searching for something more specific.');
           }
           this.results = results;
         },
@@ -407,19 +407,19 @@ export class YangSearchComponent implements OnInit, OnDestroy, AfterViewInit {
               subResult[control.get('col').value] = [];
             }
             if ('description' == control.get('col').value) {
-              subResult[control.get('col').value].push({'term': control.get('term').value, 
-                                                        'must': control.get('must').value, 
-                                                        'regex': control.get('regex').value,
-                                                        'case_insensitive': control.get('case_insensitive').value,
-                                                        'use_synonyms': control.get('use_synonyms').value});
+              subResult[control.get('col').value].push({term: control.get('term').value,
+                                                        must: control.get('must').value,
+                                                        regex: control.get('regex').value,
+                                                        case_insensitive: control.get('case_insensitive').value,
+                                                        use_synonyms: control.get('use_synonyms').value});
             }
             else if (['name', 'module-name'].includes(control.get('col').value)) {
-              subResult[control.get('col').value].push({'term': control.get('term').value, 
-                                                        'must': control.get('must').value, 
-                                                        'regex': control.get('regex').value});
+              subResult[control.get('col').value].push({term: control.get('term').value,
+                                                        must: control.get('must').value,
+                                                        regex: control.get('regex').value});
             } else {
-              subResult[control.get('col').value].push({'term': control.get('term').value, 
-                                                        'must': control.get('must').value});
+              subResult[control.get('col').value].push({term: control.get('term').value,
+                                                        must: control.get('must').value});
             }
             hasSomeInput = true;
           }
