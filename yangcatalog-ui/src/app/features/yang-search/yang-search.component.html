@@ -1,5 +1,3 @@
-
-
 <div class="yc-container yc-app-container" style="padding:128px 16px;" [ngClass]="{maximized: resultsMaximized}">
   <div class="yc-row-padding">
     <div class="yc-col" #contentCol>
@@ -173,15 +171,36 @@
                     <select class="form-select" id="advancedColumnSelect_{{i}}_{{j}}" formControlName="col">
                       <option value="{{col['value']}}" *ngFor="let col of columnsList">{{col['value']}}</option>
                     </select>
-                    
-                    <input type="checkbox" name="must" id="must_{{i}}_{{j}}" formControlName="must" checked>
-                    <label class="control-label" for="must_{{i}}_{{j}}">must</label>
-                    <input type="checkbox" name="regex" id="regex_{{i}}_{{j}}" formControlName="regex" *ngIf="['name', 'module-name', 'description'].includes(advSearchTerm.value.col)">
-                    <label class="control-label" for="regex_{{i}}_{{j}}" *ngIf="['name', 'module-name', 'description'].includes(advSearchTerm.value.col)">regex</label>
-                    <input type="checkbox" name="case_insensitive" id="case_insensitive_{{i}}_{{j}}" formControlName="case_insensitive" *ngIf="'description' == advSearchTerm.value.col">
-                    <label class="control-label" for="case_insensitive_{{i}}_{{j}}" *ngIf="'description' == advSearchTerm.value.col">case insensitive</label>
-                    <input type="checkbox" name="use_synonyms" id="use_synonyms_{{i}}_{{j}}" formControlName="use_synonyms" *ngIf="'description' == advSearchTerm.value.col">
-                    <label class="control-label" for="use_synonyms_{{i}}_{{j}}" *ngIf="'description' == advSearchTerm.value.col">use synonyms</label>
+
+                    <label for="must_{{i}}_{{j}}" class="advanced-search-checkbox">
+                      <input id="must_{{i}}_{{j}}" type="checkbox" name="must" formControlName="must" checked />
+                      <i class="skin"></i>
+                      <span>Must</span>
+                    </label>
+
+                    <label *ngIf="['name', 'module-name', 'description'].includes(advSearchTerm.value.col)"
+                      for="regex_{{i}}_{{j}}" class="advanced-search-checkbox">
+                      <input id="regex_{{i}}_{{j}}" type="checkbox" name="regex" formControlName="regex" />
+                      <i class="skin"></i>
+                      <span>Regex</span>
+                    </label>
+
+                    <label *ngIf="advSearchTerm.value.col == 'description'" for="case_insensitive_{{i}}_{{j}}"
+                      class="advanced-search-checkbox">
+                      <input id="case_insensitive_{{i}}_{{j}}" type="checkbox" name="case_insensitive"
+                        formControlName="case_insensitive" />
+                      <i class="skin"></i>
+                      <span>Case Sensitive</span>
+                    </label>
+
+                    <label *ngIf="advSearchTerm.value.col == 'description'" for="use_synonyms_{{i}}_{{j}}"
+                      class="advanced-search-checkbox">
+                      <input id="use_synonyms_{{i}}_{{j}}" type="checkbox" name="use_synonyms"
+                        formControlName="use_synonyms" />
+                      <i class="skin"></i>
+                      <span>Use Synonyms</span>
+                    </label>
+
 
                     <button id="removeCriteriaBtn_{{i}}_{{j}}" class="btn btn-sm px-ml-5" aria-label="Remove this term"
                       [disabled]="form.get('advanced')['controls'].length === 1 && advSearchGroup['controls'].length === 1"

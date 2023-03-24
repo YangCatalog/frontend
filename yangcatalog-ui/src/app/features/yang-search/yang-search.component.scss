@@ -7,6 +7,12 @@ ul.nav-tabs {
 
 }
 
+.advanced-search-checkbox {
+  i.skin {
+    margin-left: 10px;
+  }
+}
+
 .search-options {
   margin-top: 0px;
   padding-top: 15px;
@@ -59,7 +65,7 @@ ul.nav-tabs {
     content: '';
   }
 
-  .group-inner{
+  .group-inner {
     padding: 10px 0 10px 10px;
     background: #f9f6f6;
     border: 1px solid silver;
@@ -72,9 +78,11 @@ ul.nav-tabs {
         margin-right: 10px;
         width: 250px;
       }
+
       .operator {
         margin-top: 10px;
       }
+
       label {
         padding-right: 10px;
 
@@ -82,6 +90,7 @@ ul.nav-tabs {
           margin-left: 95px;
         }
       }
+
       .form-select {
         display: inline;
         width: 195px;
@@ -106,6 +115,7 @@ ul.nav-tabs {
 
 
 }
+
 .hidden {
   display: none !important;
 }
@@ -116,9 +126,9 @@ ul.nav-tabs {
 
 .options-category {
   margin-bottom: 20px;
-  p{
+
+  p {
     margin: 0;
     font-weight: 600;
   }
 }
-
