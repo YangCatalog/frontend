@@ -93,7 +93,7 @@ as follows:
 
 1. sign in to yangcatalog admin page
 2. select actions tab
-3. from drop down menu choose draftPull
+3. from drop down menu choose draft_push
 4. from options check the send message checkbox
 5. hit execute and track the job
 
@@ -102,7 +102,7 @@ as follows:
 
 1. sign in to yangcatalog admin page
 2. select actions tab
-3. from drop down menu choose draftPullLocal
+3. from drop down menu choose ietf_pull_local
 4. hit execute and track the job
 5. from drop down menu choose openconfigPullLocal
 6. hit execute and track the job
