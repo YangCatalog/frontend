@@ -6,32 +6,69 @@
 <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
   <ngb-panel title="{{moduleName}}" *ngFor="let moduleName of validationOutput.getValidatedModules()">
     <ng-template ngbPanelContent>
-      <h4>Pyang Validation</h4>
+      <div class="d-flex align-items-baseline justify-content-between">
+        <h4>Pyang Validation</h4>
+        <div *ngIf="validationOutput.validationOutput[moduleName]['pyang']['validation_time']">
+          <samp class="ms-auto">Pyang runtime: {{  validationOutput.validationOutput[moduleName]['pyang']['validation_time']  }}ms;
+            Total processing time: {{  validationOutput.validationOutput[moduleName]['pyang']['total_time']  }}ms</samp>
+        </div>
+      </div>
       <pre>{{ validationOutput.validationOutput[moduleName]['pyang']['stderr'] || 'No warnings or errors' }}</pre>
       <div *ngIf="validationOutput.validationOutput[moduleName]['pyang']['stdout']">
         <h4>Pyang Output</h4>
         <pre>{{ validationOutput.validationOutput[moduleName]['pyang']['stdout'] }}</pre>
       </div>
 
-      <h4>Confdc Validation</h4>
+      <div class="d-flex align-items-baseline justify-content-between">
+        <h4>Confdc Validation</h4>
+        <div *ngIf="validationOutput.validationOutput[moduleName]['confd']['validation_time']">
+          <samp class="ms-auto">Confdc runtime: {{  validationOutput.validationOutput[moduleName]['confd']['validation_time']  }}ms;
+            Total processing time: {{  validationOutput.validationOutput[moduleName]['confd']['total_time']  }}ms</samp>
+        </div>
+      </div>
       <pre>{{ validationOutput.validationOutput[moduleName]['confd']['stderr'] || 'No warnings or errors' }}</pre>
       <div *ngIf="validationOutput.validationOutput[moduleName]['confd']['stdout']">
         <h4>Confdc Output</h4>
         <pre>{{ validationOutput.validationOutput[moduleName]['confd']['stdout'] }}</pre>
       </div>
 
-      <h4>Yanglint Validation</h4>
+      <div class="d-flex align-items-baseline justify-content-between">
+        <h4>Yanglint Validation</h4>
+        <div *ngIf="validationOutput.validationOutput[moduleName]['yanglint']['validation_time']">
+          <samp class="ms-auto">Yanglint runtime: {{  validationOutput.validationOutput[moduleName]['yanglint']['validation_time']  }}ms;
+            Total processing time: {{  validationOutput.validationOutput[moduleName]['yanglint']['total_time']  }}ms</samp>
+        </div>
+      </div>
       <pre>{{ validationOutput.validationOutput[moduleName]['yanglint']['stderr'] || 'No warnings or errors' }}</pre>
       <div *ngIf="validationOutput.validationOutput[moduleName]['yanglint']['stdout']">
         <h4>Yanglint Output</h4>
         <pre>{{ validationOutput.validationOutput[moduleName]['yanglint']['stdout'] }}</pre>
       </div>
 
-      <h4>Yangdump-pro Output</h4>
+      <div class="d-flex align-items-baseline justify-content-between">
+        <h4>Yangdump-pro Output</h4>
+        <div *ngIf="validationOutput.validationOutput[moduleName]['yangdump-pro']['validation_time']">
+          <samp class="ms-auto">Yangdump-pro runtime: {{  validationOutput.validationOutput[moduleName]['yangdump-pro']['validation_time']  }}ms;
+            Total processing time: {{  validationOutput.validationOutput[moduleName]['yangdump-pro']['total_time']  }}ms</samp>
+        </div>
+      </div>
       <pre>{{ validationOutput.validationOutput[moduleName]['yangdump-pro']['stdout']  || 'No warnings or errors' }}</pre>
       <div *ngIf="validationOutput.validationOutput[moduleName]['yangdump-pro']['stderr']">
         <h4>Yangdump-pro Validation</h4>
         <pre>{{ validationOutput.validationOutput[moduleName]['yangdump-pro']['stderr'] }}</pre>
+      </div>
+
+      <div class="d-flex align-items-baseline justify-content-between">
+        <h4>Lighty-yang-validator Validation</h4>
+        <div *ngIf="validationOutput.validationOutput[moduleName]['lighty-yang-validator']['validation_time']">
+          <samp class="ms-auto">Lighty-yang-validator runtime: {{  validationOutput.validationOutput[moduleName]['lighty-yang-validator']['validation_time']  }}ms;
+            Total processing time: {{  validationOutput.validationOutput[moduleName]['lighty-yang-validator']['total_time']  }}ms</samp>
+        </div>
+      </div>
+      <pre>{{ validationOutput.validationOutput[moduleName]['lighty-yang-validator']['stdout']  || 'No warnings or errors' }}</pre>
+      <div *ngIf="validationOutput.validationOutput[moduleName]['lighty-yang-validator']['stderr']">
+        <h4>Lighty-yang-validator Output</h4>
+        <pre>{{ validationOutput.validationOutput[moduleName]['lighty-yang-validator']['stderr'] }}</pre>
       </div>
     </ng-template>
   </ngb-panel>
