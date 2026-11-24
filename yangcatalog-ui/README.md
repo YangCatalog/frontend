@@ -6,7 +6,7 @@ For [YANG Regex Validator (yangre)](https://yangcatalog.org/yangre), see: https:
 
 This repository contains the code for displaying and formating of most of YANG Catalog's public web pages. This includes:
 - informational pages
-- [statistics page](https://yangcatalog.org/private-page) - displays various graphs, statistics, and warnings for module compilations
+- [statistics page](https://yangcatalog.org/module-stats) - displays various graphs, statistics, and warnings for module compilations
 - [search page](https://yangcatalog.org/yang-search) - plain text or regexp search through the catalog of YANG modules
 - [module details page](https://yangcatalog.org/yang-search/module_details) - view details and properties of a specific module
 - [module impact analysis page](https://yangcatalog.org/yang-search/impact_analysis) - view dependency relations of a module or set of modules

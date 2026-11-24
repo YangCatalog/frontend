@@ -8,7 +8,7 @@ const routes: Routes = [
     component: YangCatalogComponent
   },
   {
-    path: 'private-page',
+    path: 'module-stats',
     loadChildren: () => import('./features/private/private.module').then(mod => mod.PrivateModule),
     data: { title: 'YANG Modules Stats' }
   },
